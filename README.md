@@ -304,7 +304,7 @@ GitHub push → Streamlit Cloud pulls → Redeploys automatically
 
 ## Author
 
-**Your Name**
+**Sanjai K**
 Domain: Public Safety · Urban Analytics · Unsupervised Machine Learning
 
 ---
