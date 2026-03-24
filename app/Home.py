@@ -43,7 +43,7 @@ with col_l:
     fig.update_layout(showlegend=False,
                       coloraxis_showscale=False,
                       margin=dict(l=0, r=0, t=10, b=0))
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
 with col_r:
     st.subheader("Hourly crime pattern")
@@ -54,7 +54,7 @@ with col_r:
         color_discrete_sequence=["#D85A30"]
     )
     fig2.update_layout(margin=dict(l=0, r=0, t=10, b=0))
-    st.plotly_chart(fig2, width="stretch")
+    st.plotly_chart(fig2, use_container_width=True)
 
 st.divider()
 st.subheader("Crime severity heatmap — hour vs day of week")
@@ -70,7 +70,7 @@ fig3 = px.imshow(
     aspect="auto", height=280
 )
 fig3.update_layout(margin=dict(l=0, r=0, t=10, b=0))
-st.plotly_chart(fig3, width="stretch")
+st.plotly_chart(fig3, use_container_width=True)
 
 st.divider()
 st.caption("Data source: Chicago Data Portal | "

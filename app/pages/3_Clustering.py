@@ -47,7 +47,7 @@ if algo == "K-Means":
     )
     fig.update_traces(marker=dict(size=2))
     fig.update_layout(legend_title="Cluster")
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
     st.subheader("Cluster statistics")
     summary = load_data().groupby("KMeans_Cluster").agg(
@@ -57,7 +57,7 @@ if algo == "K-Means":
         Top_Crime=("Primary Type", lambda x: x.value_counts().index[0])
     ).round(3)
     summary["Arrest_Rate"] = (summary["Arrest_Rate"]*100).round(1)
-    st.dataframe(summary, width="stretch")
+    st.dataframe(summary, use_container_width=True)
 
 elif algo == "DBSCAN":
     st.subheader("DBSCAN density-based clustering")
@@ -81,7 +81,7 @@ elif algo == "DBSCAN":
         opacity=0.5, height=500
     )
     fig.update_traces(marker=dict(size=2))
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
     st.info(f"DBSCAN removed {len(noise):,} noise points "
             f"({len(noise)/len(dbscan_df)*100:.1f}%) — "
@@ -99,7 +99,7 @@ elif algo == "Hierarchical":
     )
     fig.update_traces(marker=dict(size=3))
     fig.update_layout(legend_title="Zone")
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
     st.subheader("Zone breakdown")
     zone_counts = hier_df["Hier_Cluster"].value_counts().reset_index()
@@ -108,11 +108,11 @@ elif algo == "Hierarchical":
         zone_counts, x="Zone", y="Crime Count",
         color="Crime Count", color_continuous_scale="Purples"
     )
-    st.plotly_chart(fig2, width="stretch")
+    st.plotly_chart(fig2, use_container_width=True)
 
 elif algo == "Comparison":
     st.subheader("Algorithm performance comparison")
-    st.dataframe(comparison, width="stretch")
+    st.dataframe(comparison, use_container_width=True)
 
     fig = px.bar(
         comparison, x="Algorithm", y="Silhouette Score",
@@ -125,7 +125,7 @@ elif algo == "Comparison":
         annotation_text="Target threshold (0.5)"
     )
     fig.update_traces(texttemplate="%{text:.4f}", textposition="outside")
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
     st.subheader("Algorithm characteristics")
     char_df = pd.DataFrame({
@@ -137,4 +137,4 @@ elif algo == "Comparison":
         "Cluster shape":  ["Spherical","Arbitrary","Hierarchical"],
         "Speed":          ["Fast","Medium","Slow"],
     })
-    st.dataframe(char_df, width="stretch")
+    st.dataframe(char_df, use_container_width=True)

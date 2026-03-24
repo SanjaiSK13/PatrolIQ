@@ -75,7 +75,7 @@ with tab1:
             render_mode="svg" # <-- FIXES WEBGL ERROR
         )
         fig.update_traces(marker=dict(size=2))
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, use_container_width=True)
 
         st.subheader("3D PCA projection")
         # 3D plots ALWAYS require WebGL. If this fails, use a standalone browser (Chrome/Edge).
@@ -88,7 +88,7 @@ with tab1:
             title="PCA 3D projection — colored by cluster"
         )
         fig3d.update_traces(marker=dict(size=2))
-        st.plotly_chart(fig3d, width="stretch")
+        st.plotly_chart(fig3d, use_container_width=True)
 
 with tab2:
     st.subheader("t-SNE visualization")
@@ -101,7 +101,7 @@ with tab2:
             key="tsne_color"
         )
 
-        # 2D t-SNE Plot - Added render_mode="svg" to fix WebGL errors
+        # 2D t-SNE Plot
         is_discrete = color_tsne in ["Primary_Type", "Season", "KMeans_Cluster"]
         
         fig_t = px.scatter(
@@ -114,6 +114,6 @@ with tab2:
             render_mode="svg" # <-- FIXES WEBGL ERROR
         )
         fig_t.update_traces(marker=dict(size=3))
-        st.plotly_chart(fig_t, width="stretch")
+        st.plotly_chart(fig_t, use_container_width=True)
     else:
         st.info("Run the t-SNE processing script first to generate data.")

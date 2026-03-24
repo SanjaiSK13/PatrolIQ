@@ -51,7 +51,7 @@ with tab1:
             color_discrete_sequence=["#D85A30"]
         )
         fig.update_layout(xaxis=dict(tickmode="linear", dtick=1))
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, use_container_width=True)
 
     with col2:
         hourly_sev = df_f.groupby("Hour")["Crime_Severity_Score"].mean().reset_index()
@@ -62,7 +62,7 @@ with tab1:
             color_continuous_scale="RdYlGn_r"
         )
         fig2.update_layout(coloraxis_showscale=False)
-        st.plotly_chart(fig2, width="stretch")
+        st.plotly_chart(fig2, use_container_width=True)
 
 with tab2:
     day_order = ["Monday","Tuesday","Wednesday",
@@ -77,7 +77,7 @@ with tab2:
             color="Count", color_continuous_scale="Purples"
         )
         fig3.update_layout(coloraxis_showscale=False)
-        st.plotly_chart(fig3, width="stretch")
+        st.plotly_chart(fig3, use_container_width=True)
 
     with col2:
         pivot_hw = df_f.pivot_table(
@@ -90,7 +90,7 @@ with tab2:
             color_continuous_scale="YlOrRd",
             aspect="auto"
         )
-        st.plotly_chart(fig4, width="stretch")
+        st.plotly_chart(fig4, use_container_width=True)
 
 with tab3:
     col1, col2 = st.columns(2)
@@ -106,7 +106,7 @@ with tab3:
             color="Count", color_continuous_scale="Blues"
         )
         fig5.update_layout(coloraxis_showscale=False)
-        st.plotly_chart(fig5, width="stretch")
+        st.plotly_chart(fig5, use_container_width=True)
 
     with col2:
         seasonal = df_f["Season"].value_counts().reset_index()
@@ -116,11 +116,11 @@ with tab3:
             title="Crime distribution by season",
             color_discrete_sequence=px.colors.qualitative.Set2
         )
-        st.plotly_chart(fig6, width="stretch")
+        st.plotly_chart(fig6, use_container_width=True)
 
 with tab4:
     st.subheader("Temporal cluster profiles")
-    st.dataframe(profiles, width="stretch")
+    st.dataframe(profiles, use_container_width=True)
 
     cluster_hourly = df_f.groupby(
         ["Temporal_Cluster","Hour"]
@@ -134,4 +134,4 @@ with tab4:
         color_discrete_sequence=px.colors.qualitative.Set1
     )
     fig7.update_layout(xaxis=dict(tickmode="linear", dtick=2))
-    st.plotly_chart(fig7, width="stretch")
+    st.plotly_chart(fig7, use_container_width=True)
