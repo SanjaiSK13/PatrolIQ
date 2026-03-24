@@ -23,7 +23,7 @@ tab1, tab2, tab3 = st.tabs([
 
 with tab1:
     st.subheader("Geographic clustering — algorithm comparison")
-    st.dataframe(comparison, use_container_width=True)
+    st.dataframe(comparison, width="stretch")
 
     fig = go.Figure()
     algos  = comparison["Algorithm"].tolist()
@@ -48,7 +48,7 @@ with tab1:
         yaxis_title="Silhouette score",
         showlegend=False, height=400
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     st.subheader("Evaluation metrics explained")
     metrics_df = pd.DataFrame({
@@ -61,7 +61,7 @@ with tab1:
             "Sum of squared distances to cluster center"
         ]
     })
-    st.dataframe(metrics_df, use_container_width=True)
+    st.dataframe(metrics_df, width="stretch")
 
 with tab2:
     st.subheader("PCA — explained variance")
@@ -73,7 +73,7 @@ with tab2:
         "Variance %": (var * 100).round(2),
         "Cumulative %": (var.cumsum() * 100).round(2)
     })
-    st.dataframe(var_df, use_container_width=True)
+    st.dataframe(var_df, width="stretch")
 
     fig2 = go.Figure()
     fig2.add_trace(go.Bar(
@@ -95,7 +95,7 @@ with tab2:
                     overlaying="y", side="right"),
         height=420, legend=dict(x=0.7, y=0.3)
     )
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
     st.subheader("t-SNE parameters")
     tsne_params = pd.DataFrame({
@@ -109,7 +109,7 @@ with tab2:
             "Stratified sample across all crime types"
         ]
     })
-    st.dataframe(tsne_params, use_container_width=True)
+    st.dataframe(tsne_params, width="stretch")
 
 with tab3:
     st.subheader("MLflow experiment runs")
@@ -141,7 +141,7 @@ with tab3:
                 })
             st.dataframe(
                 pd.DataFrame(run_data),
-                use_container_width=True
+                width="stretch"
             )
     except Exception as e:
         st.warning(f"Could not load MLflow data: {e}")

@@ -114,4 +114,4 @@ summary_display["Arrest_Rate"] = (
     summary_display["Arrest_Rate"] * 100
 ).round(1).astype(str) + "%"
 summary_display["Avg_Severity"] = summary_display["Avg_Severity"].round(2)
-st.dataframe(summary_display, use_container_width=True)
+st.dataframe(summary_display, width="stretch")
