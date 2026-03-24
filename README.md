@@ -1,11 +1,8 @@
-PatrolIQ — Smart Safety Analytics Platform
+**PatrolIQ — Smart Safety Analytics Platform**
 An enterprise-grade Geospatial AI & Urban Analytics platform that transforms 500,000 raw Chicago crime records into actionable tactical intelligence for law enforcement, urban planners, and public safety agencies.
 The platform identifies hidden spatial patterns, severity-weighted hotspots, and temporal crime clusters using unsupervised machine learning and advanced interactive visualization — deployed live on Streamlit Cloud.
 
-Live Demo
-PatrolIQ — Live App
-
-Overview
+**Overview**
 PatrolIQ bridges the gap between traditional crime dashboards and intelligent urban analytics systems. Instead of merely reporting historical incidents, the platform answers the questions law enforcement asks every day:
 
 Where should we patrol tonight?
@@ -14,7 +11,7 @@ When do most crimes occur?
 
 By applying K-Means, DBSCAN, Hierarchical Clustering, PCA, and t-SNE to 500,000 Chicago crime records, the platform surfaces patterns invisible to the human eye — and presents them through an interactive, production-ready dashboard.
 
-Key Capabilities
+**Key Capabilities**
 
 500,000 crime records processed from the Chicago Data Portal (7.8M source)
 Geographic crime hotspot detection using 3 clustering algorithms
@@ -25,32 +22,32 @@ Interactive folium heatmaps with severity weighting
 Fully deployed on Streamlit Cloud with CI/CD via GitHub
 
 
-Tech Stack
-Core
+**Tech Stack
+Core**
 
 Python 3.10
 Streamlit 1.31.0
 Pandas, NumPy, SciPy
 
-Machine Learning
+**Machine Learning**
 
 Scikit-learn — K-Means, DBSCAN, Hierarchical Clustering, PCA
 Scikit-learn — t-SNE (manifold)
 MLflow — experiment tracking and model registry
 
-Visualization
+**Visualization**
 
 Plotly — interactive charts and 3D scatter plots
 Folium + streamlit-folium — interactive crime heatmaps
 Seaborn, Matplotlib — EDA plots
 
-Deployment
+**Deployment**
 
 Streamlit Cloud
 GitHub CI/CD
 
 
-System Architecture
+**System Architecture**
 Chicago Crime Dataset (7.8M Records)
             ↓
     Download & Sample (500K Records)
@@ -82,7 +79,7 @@ Chicago Crime Dataset (7.8M Records)
             ↓
     Streamlit Cloud Deployment
 
-Project Structure
+**Project Structure**
 PatrolIQ/
 │   .gitignore
 │   requirements.txt
@@ -139,28 +136,31 @@ PatrolIQ/
 │
 └── mlruns/                          ← MLflow experiment data (local)
 
-Dataset
-Source: Chicago Data Portal — Crimes 2001 to Present
+**Dataset
+Source: Chicago Data Portal — Crimes 2001 to Present**
 PropertyValueFull dataset size7.8 Million records (1.7 GB)Sample used500,000 records (2015–2024)Input features22 original + 4 engineeredCrime categories33 distinct typesGeographic coverageCity of Chicago, 22 districts
 Engineered Features
 FeatureDescriptionHourHour of day (0–23) extracted from datetimeDay_of_WeekDay name (Monday–Sunday)MonthMonth number (1–12)SeasonWinter / Spring / Summer / FallIs_WeekendBoolean flag for Saturday/SundayCrime_Severity_ScoreCustom 1–10 score by crime type
 
-ML Models & Results
+**ML Models & Results**
 Geographic Clustering
 AlgorithmClustersSilhouette ScoreBest forK-Means8~0.45Patrol zone planningDBSCANAuto-detected~0.42Natural hotspot detectionHierarchical8~0.43Zone hierarchy analysis
+
 Temporal Clustering
 AlgorithmClustersDescriptionK-Means4Late-night · Morning · Afternoon · Weekend patterns
+
 Dimensionality Reduction
 TechniqueInputOutputVariance ExplainedPCA18 features3 components~65–75%t-SNE18 features2D projection15,000-point sample
 
 MLflow Experiment Tracking
 6 runs logged across 2 experiments:
 ExperimentRunKey MetricsPatrolIQ_ClusteringKMeans_Geographicsilhouette, davies_bouldin, inertiaPatrolIQ_ClusteringDBSCAN_Geographicn_clusters, noise_pct, silhouettePatrolIQ_ClusteringHierarchical_Geographicsilhouette, davies_bouldinPatrolIQ_ClusteringKMeans_Temporalsilhouette, inertiaPatrolIQ_DimReductionPCA_CrimeFeaturespc1_variance, total_variancePatrolIQ_DimReductiontSNE_CrimeFeatureskl_divergence
+
 To view locally:
-bashmlflow ui
+mlflow ui
 Then visit http://localhost:5000
 
-Dashboard Pages
+**Dashboard Pages**
 Home
 Executive summary with 5 KPI metrics, crime type distribution, hourly pattern, and severity heatmap.
 Crime Map
@@ -174,9 +174,9 @@ PCA 2D and 3D scatter plots with color options, plus t-SNE visualizations colore
 Model Performance
 Silhouette score comparison chart, PCA scree plot, evaluation metrics explanation, and MLflow experiment summary.
 
-Installation & Local Setup
-bash# Clone the repository
-git clone https://github.com/YOUR_USERNAME/PatrolIQ.git
+**Installation & Local Setup**
+Clone the repository
+git clone https://github.com/SanjaiSK13/PatrolIQ.git
 cd PatrolIQ
 
 # Create virtual environment
@@ -197,17 +197,17 @@ python src/sample_data.py
 # Launch app
 streamlit run app/Home.py
 
-Deployment
+**Deployment**
 The app is deployed on Streamlit Cloud connected to this GitHub repository.
 Any push to the main branch automatically triggers a redeployment.
 GitHub push → Streamlit Cloud pulls → Redeploys automatically
 
-Business Impact
+**Business Impact**
 StakeholderValue DeliveredPolice DepartmentsIdentify 8 distinct patrol zones with crime concentration dataCity AdministrationData-driven evidence for resource allocation decisionsUrban PlannersSeasonal and geographic crime trends for infrastructure planningEmergency ServicesHigh-risk time slots and zones for proactive deployment
 
 Author
 Sanjai K
 Domain: Public Safety · Urban Analytics · Unsupervised Machine Learning
 
-License
+**License**
 This project is for educational purposes. Crime data sourced from the Chicago Data Portal under the City of Chicago Open Data License.
